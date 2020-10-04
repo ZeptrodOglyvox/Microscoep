@@ -1,0 +1,228 @@
+@import url("https://fonts.googleapis.com/css2?family=Catamaran:wght@200;300;400&display=swap");
+:root {
+  --font-light: 300;
+  --font-heavy: 400;
+  --card-big-dim: 14rem;
+  --card-small-dim: 8.3rem;
+}
+
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Catamaran', Arial, sans-serif;
+  font-weight: var(--font-light);
+}
+
+h1 {
+  letter-spacing: .15rem;
+}
+
+.navbar {
+  background-color: #000;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: .5rem 6%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #fff;
+  min-height: 4vh;
+}
+
+.navbar ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 15%;
+  max-width: 8rem;
+  list-style: none;
+}
+
+.navbar ul li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 1.9rem;
+  height: 1.9rem;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: .9rem;
+}
+
+.card, .legacy-card {
+  margin: 1rem;
+}
+
+.legacy-container h2 {
+  font-size: 1rem;
+}
+
+.legacy-container .legacy-card {
+  border: 1px solid #000;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  width: 6rem;
+  height: 6rem;
+  padding: .7rem .9rem;
+}
+
+.legacy-container .legacy-card .description {
+  font-size: .75rem;
+}
+
+.legacy-container .legacy-card .creator-name {
+  font-size: .6rem;
+}
+
+.lens-indicator {
+  display: inline-block;
+  border: 1px solid #000;
+  font-size: .8rem;
+  font-weight: var(--font-heavy);
+  letter-spacing: .04rem;
+  padding: .1rem .8rem;
+  width: 14rem;
+  position: relative;
+}
+
+.lens-indicator .lens-name-icon {
+  position: absolute;
+  padding: inherit;
+  right: 0;
+  top: 0;
+}
+
+.lens-indicator .icon-border {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  border: 1px solid #000;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 50%;
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+.card {
+  border: 1px solid #000;
+  padding: 1rem 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.tone {
+  display: inline-block;
+  border: 1px solid #000;
+  border-radius: 50%;
+}
+
+.tone-dark {
+  background-color: #000;
+}
+
+.tone-light {
+  background-color: #fff;
+}
+
+.period-card {
+  width: var(--card-small-dim);
+  height: var(--card-big-dim);
+}
+
+.period-card .name {
+  font-size: 1rem;
+  font-weight: var(--font-heavy);
+  text-align: center;
+}
+
+.period-card .tone {
+  width: 2.2rem;
+  height: 2.2rem;
+}
+
+.event-card {
+  width: var(--card-big-dim);
+  height: var(--card-small-dim);
+}
+
+.event-card .description {
+  font-size: .9rem;
+  font-weight: var(--font-heavy);
+  text-align: center;
+}
+
+.event-card .tone {
+  width: 2rem;
+  height: 2rem;
+}
+
+.scene-card {
+  width: var(--card-small-dim);
+  height: var(--card-big-dim);
+  position: relative;
+}
+
+.scene-card p {
+  font-size: .7rem;
+  text-align: center;
+  font-weight: var(--font-heavy);
+  line-height: .9rem;
+}
+
+.scene-card hr {
+  width: 100%;
+  background-color: #000;
+}
+
+.scene-card .tone {
+  width: .9rem;
+  height: .9rem;
+  position: absolute;
+  bottom: .3rem;
+  right: .3rem;
+}
+/*# sourceMappingURL=style.css.map */
