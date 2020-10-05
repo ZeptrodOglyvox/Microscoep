@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Catamaran:wght@200;300;400&display=swap');
+
+:root {
+    --font-light: 300;
+    --font-heavy: 400;
+    --card-big-dim: 14em;
+    --card-small-dim: 8.3em;
+    --legacy-card-size: 6em;
+    --periods-gap: 1.5em;
+    font-size: 16px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Catamaran', Arial, sans-serif;
+    font-weight: var(--font-light);
+}

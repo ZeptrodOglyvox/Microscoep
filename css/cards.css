@@ -1,0 +1,89 @@
+.card {
+  border: 1px solid #000;
+  padding: 1rem 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.tone {
+  display: inline-block;
+  border: 1px solid #000;
+  border-radius: 50%;
+}
+
+.tone-dark {
+  background-color: #000;
+}
+
+.tone-light {
+  background-color: inherit;
+}
+
+.period-card {
+  width: var(--card-small-dim);
+  height: var(--card-big-dim);
+}
+
+.period-card .name {
+  font-size: 1rem;
+  font-weight: var(--font-heavy);
+  text-align: center;
+}
+
+.period-card .tone {
+  width: 2.2rem;
+  height: 2.2rem;
+}
+
+.event-card {
+  width: var(--card-big-dim);
+  height: var(--card-small-dim);
+}
+
+.event-card .description {
+  font-size: .9rem;
+  font-weight: var(--font-heavy);
+  text-align: center;
+}
+
+.event-card .tone {
+  width: 2rem;
+  height: 2rem;
+}
+
+.scene-card {
+  width: var(--card-small-dim);
+  height: var(--card-big-dim);
+  position: relative;
+}
+
+.scene-card p {
+  font-size: .7rem;
+  text-align: center;
+  font-weight: var(--font-heavy);
+  line-height: .9rem;
+}
+
+.scene-card hr {
+  width: 100%;
+  background-color: #000;
+}
+
+.scene-card .tone {
+  width: .9rem;
+  height: .9rem;
+  position: absolute;
+  bottom: .3rem;
+  right: .3rem;
+}
+/*# sourceMappingURL=cards.css.map */
