@@ -88,12 +88,6 @@
   gap: 2rem;
 }
 
-@media (min-width: 1200px) {
-  .top-container {
-    padding-right: 20%;
-  }
-}
-
 .legacy-container {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -137,6 +131,13 @@
 
 .legacy-container .legacy-card .creator-name {
   font-size: .6rem;
+}
+
+.legacy-container .legacy-card textarea {
+  width: 100%;
+  resize: none;
+  overflow: hidden;
+  text-align: center;
 }
 
 .lens-indicator {
@@ -226,7 +227,7 @@
 
 .card {
   border: 1px solid #000;
-  padding: 1rem 1rem;
+  padding: 2rem 1rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -234,11 +235,20 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+.card textarea {
+  width: 100%;
+  resize: none;
+  overflow: hidden;
+  text-align: center;
+  font-size: inherit;
 }
 
 .tone {
@@ -260,10 +270,27 @@
   height: var(--card-big-dim);
 }
 
+.period-card .name-outer {
+  height: 65%;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
 .period-card .name {
+  display: inline-block;
   font-size: 1rem;
   font-weight: var(--font-heavy);
   text-align: center;
+  overflow-wrap: break-word;
 }
 
 .period-card .tone {
@@ -327,5 +354,41 @@
 .navbar .menu-icon:hover {
   color: #000;
   background-color: #fff;
+}
+
+::-moz-selection {
+  background-color: #cccccc;
+}
+
+::selection {
+  background-color: #cccccc;
+}
+
+#notification {
+  position: fixed;
+  bottom: 1rem;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  font-weight: var(--font-heavy);
+  font-size: 1.1rem;
+  letter-spacing: .02rem;
+  border: 1px solid black;
+  width: 70%;
+  max-width: 50rem;
+  text-align: center;
+  background-color: #fff;
+  z-index: 5;
+  padding: .4rem 0;
+  opacity: 0;
+}
+
+#notification i {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  font-size: 1.3rem;
 }
 /*# sourceMappingURL=style.css.map */

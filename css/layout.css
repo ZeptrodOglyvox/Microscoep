@@ -68,12 +68,6 @@
   gap: 2rem;
 }
 
-@media (min-width: 1200px) {
-  .top-container {
-    padding-right: 20%;
-  }
-}
-
 .legacy-container {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -117,6 +111,13 @@
 
 .legacy-container .legacy-card .creator-name {
   font-size: .6rem;
+}
+
+.legacy-container .legacy-card textarea {
+  width: 100%;
+  resize: none;
+  overflow: hidden;
+  text-align: center;
 }
 
 .lens-indicator {

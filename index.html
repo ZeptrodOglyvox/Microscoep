@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Microscoep</title>
     <link rel="stylesheet" href="css/style.css">
-    <script src="js/main.js" defer></script>
     <script src="https://kit.fontawesome.com/4d1a468bbd.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
+    <script src="js/main.js" defer></script>
 </head>
 <body>
     <nav class="navbar">
@@ -60,16 +61,18 @@
         <div class="periods-container">
             <div class="period">
                 <div class="card period-card">
-                    <h2 class="name">The Beggining of Time</h2>
+                    <div class="name-outer">
+                        <p class="name" data-editable>WWWWWWWWWWWWWWW</p>
+                    </div>
                     <div class="tone tone-dark"></div>
                 </div>
                 <div class="event">
                     <div class="card event-card">
-                        <p class="description">The Collision of Spheres</p>
+                        <p class="description" data-editable>The Collision of Spheres</p>
                         <div class="tone tone-light"></div>
                     </div>
                     <div class="card scene-card">
-                        <p>Why did the newborn gods oppose the Sundering?</p>
+                        <p data-editable>Why did the newborn gods oppose the Sundering?</p>
                         <hr>
                         <p>The void of space, when time had barely started.</p>
                         <hr>
@@ -122,56 +125,12 @@
                     </div>
                 </div>
             </div>
+            <div class="addPeriod" onclick="createPeriodBefore(this)">+</div>
             <div class="period">
                 <div class="card period-card">
-                    <h2 class="name">A blank period</h2>
-                    <div class="tone tone-dark"></div>
-                </div>
-            </div>
-            <div class="period">
-                <div class="card period-card">
-                    <h2 class="name">A blank period</h2>
-                    <div class="tone tone-dark"></div>
-                </div>
-            </div>
-            <div class="period">
-                <div class="card period-card">
-                    <h2 class="name">The Beggining of Time</h2>
-                    <div class="tone tone-dark"></div>
-                </div>
-                <div class="event">
-                    <div class="card event-card">
-                        <p class="description">The Collision of Spheres</p>
-                        <div class="tone tone-light"></div>
+                    <div class="name-outer">
+                        <p class="name" data-editable data-optional>WWWWWWWWWWWWWWW</p>
                     </div>
-                    <div class="card scene-card">
-                        <p>Why did the newborn gods oppose the Sundering?</p>
-                        <hr>
-                        <p>The void of space, when time had barely started.</p>
-                        <hr>
-                        <p>They believed the laws of the world were worthy of life.</p>
-                        <div class="tone tone-dark"></div>
-                    </div>
-                </div>
-                <div class="event">
-                    <div class="card event-card">
-                        <p class="description">The Collision of Spheres</p>
-                        <div class="tone tone-light"></div>
-                    </div>
-                    
-                    <div class="card scene-card">
-                        <p>Why did the newborn gods oppose the Sundering?</p>
-                        <hr>
-                        <p>The void of space, when time had barely started.</p>
-                        <hr>
-                        <p>They believed the laws of the world were worthy of life.</p>
-                        <div class="tone tone-dark"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="period">
-                <div class="card period-card">
-                    <h2 class="name">The Beggining of Time</h2>
                     <div class="tone tone-dark"></div>
                 </div>
                 <div class="event">
@@ -233,6 +192,11 @@
                     </div>
                 </div>
             </div>
+        </div>
+
+        <div id="notification">
+            <p> This text can't be blank.</p> 
+            <i class="fas fa-microscope"></i>
         </div>
     </div>
 </body>

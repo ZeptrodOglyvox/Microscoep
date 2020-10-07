@@ -46,11 +46,11 @@
     gap: 2rem;
 }
 
-@media (min-width: 1200px) {
-    .top-container {
-        padding-right: 20%;
-    }
-}
+// @media (min-width: 1200px) {
+//     .top-container {
+//         padding-right: 20%;
+//     }
+// }
 
 .legacy-container {
     display: flex;
@@ -81,6 +81,13 @@
     
         .creator-name {
             font-size: .6rem;
+        }
+
+        textarea {
+            width: 100%;
+            resize: none;
+            overflow: hidden;
+            text-align: center;
         }
     }
 }
