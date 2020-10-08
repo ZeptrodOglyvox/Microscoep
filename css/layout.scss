@@ -35,6 +35,7 @@
 
 .app-container {
     padding-bottom: 4rem;
+    overflow-x: hidden;
 }
 
 .top-container {
@@ -45,12 +46,6 @@
     padding: 4rem 6% 4rem calc(6% + var(--card-big-dim) / 2 - var(--card-small-dim) / 2);
     gap: 2rem;
 }
-
-// @media (min-width: 1200px) {
-//     .top-container {
-//         padding-right: 20%;
-//     }
-// }
 
 .legacy-container {
     display: flex;
@@ -87,7 +82,7 @@
             width: 100%;
             resize: none;
             overflow: hidden;
-            text-align: center;
+            text-align: left;
         }
     }
 }
@@ -117,22 +112,20 @@
 }
 
 .periods-container {
-
     display: flex;
     justify-content: start;
     align-items: flex-start;
-    gap: var(--periods-gap);
+    // gap: var(--periods-gap);
     padding: 0 6%;
 }
 
 .period {
-
     display: flex;
     flex-direction: column;
     justify-content: start;
     align-items: center;
     min-width: var(--card-big-dim);
-    gap: 2rem;
+    // gap: 2rem;
 }
 
 .event {
@@ -140,5 +133,5 @@
     flex-direction: column;
     justify-content: start;
     align-items: center;
-    gap: .8rem;
+    // gap: .8rem;
 }

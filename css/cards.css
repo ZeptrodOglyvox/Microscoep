@@ -21,6 +21,8 @@
   resize: none;
   overflow: hidden;
   text-align: center;
+  padding: 2px 0;
+  margin: 0;
 }
 
 .tone {
@@ -63,6 +65,7 @@
   font-weight: var(--font-heavy);
   text-align: center;
   overflow-wrap: break-word;
+  max-height: 100%;
 }
 
 .period-card .tone {
@@ -73,12 +76,34 @@
 .event-card {
   width: var(--card-big-dim);
   height: var(--card-small-dim);
+  padding: 1rem 1rem;
+}
+
+.event-card .description-outer {
+  height: 50%;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .event-card .description {
+  display: inline-block;
   font-size: .9rem;
   font-weight: var(--font-heavy);
   text-align: center;
+  overflow-wrap: break-word;
+  max-height: 100%;
 }
 
 .event-card .tone {
@@ -90,9 +115,30 @@
   width: var(--card-small-dim);
   height: var(--card-big-dim);
   position: relative;
+  padding: 1.2rem 1rem;
 }
 
-.scene-card .description {
+.scene-card .text-outer {
+  height: 26%;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  max-height: 100%;
+  overflow-wrap: break-word;
+}
+
+.scene-card p {
   font-size: .7rem;
   text-align: center;
   font-weight: var(--font-heavy);
@@ -110,5 +156,15 @@
   position: absolute;
   bottom: .3rem;
   right: .3rem;
+}
+
+.scene-card textarea {
+  overflow-y: scroll;
+  scrollbar-width: none;
+  padding: 0;
+}
+
+.scene-card textarea::-webkit-scrollbar {
+  display: none;
 }
 /*# sourceMappingURL=cards.css.map */

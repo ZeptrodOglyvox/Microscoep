@@ -11,6 +11,8 @@
         resize: none;
         overflow: hidden;
         text-align: center;
+        padding: 2px 0;
+        margin: 0;
     }
 }
 
@@ -46,6 +48,7 @@
         font-weight: var(--font-heavy);
         text-align: center;
         overflow-wrap: break-word;
+        max-height: 100%;
     }
 
     .tone {
@@ -57,11 +60,24 @@
 .event-card {
     width: var(--card-big-dim);
     height: var(--card-small-dim);
+    padding: 1rem 1rem;
+
+    .description-outer {
+        height: 50%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
 
     .description {
+        display: inline-block;
         font-size: .9rem;
         font-weight: var(--font-heavy);
         text-align: center;
+        overflow-wrap: break-word;
+        max-height: 100%;
     }
 
     .tone {
@@ -74,8 +90,21 @@
     width: var(--card-small-dim);
     height: var(--card-big-dim);
     position: relative;
+    padding: 1.2rem 1rem;
 
-    .description {
+    .text-outer {
+        height: 26%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        max-height: 100%;
+        overflow-wrap: break-word;
+
+    }
+
+    p {
         font-size: .7rem;
         text-align: center;
         font-weight: var(--font-heavy);
@@ -93,5 +122,15 @@
         position: absolute;
         bottom: .3rem;
         right: .3rem;
+    }
+
+    textarea {
+        overflow-y: scroll;
+        scrollbar-width: none;
+        padding: 0;
+    }
+
+    textarea::-webkit-scrollbar {
+        display: none;
     }
 }

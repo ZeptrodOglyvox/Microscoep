@@ -5,7 +5,7 @@
   --card-big-dim: 14em;
   --card-small-dim: 8.3em;
   --legacy-card-size: 6em;
-  --periods-gap: 1.5em;
+  --periods-gap: 2.5em;
   font-size: 16px;
 }
 
@@ -72,6 +72,7 @@
 
 .app-container {
   padding-bottom: 4rem;
+  overflow-x: hidden;
 }
 
 .top-container {
@@ -137,7 +138,7 @@
   width: 100%;
   resize: none;
   overflow: hidden;
-  text-align: center;
+  text-align: left;
 }
 
 .lens-indicator {
@@ -186,7 +187,6 @@
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: flex-start;
-  gap: var(--periods-gap);
   padding: 0 6%;
 }
 
@@ -205,7 +205,6 @@
       -ms-flex-align: center;
           align-items: center;
   min-width: var(--card-big-dim);
-  gap: 2rem;
 }
 
 .event {
@@ -222,7 +221,6 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  gap: .8rem;
 }
 
 .card {
@@ -248,7 +246,8 @@
   resize: none;
   overflow: hidden;
   text-align: center;
-  font-size: inherit;
+  padding: 2px 0;
+  margin: 0;
 }
 
 .tone {
@@ -291,6 +290,7 @@
   font-weight: var(--font-heavy);
   text-align: center;
   overflow-wrap: break-word;
+  max-height: 100%;
 }
 
 .period-card .tone {
@@ -301,12 +301,34 @@
 .event-card {
   width: var(--card-big-dim);
   height: var(--card-small-dim);
+  padding: 1rem 1rem;
+}
+
+.event-card .description-outer {
+  height: 50%;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .event-card .description {
+  display: inline-block;
   font-size: .9rem;
   font-weight: var(--font-heavy);
   text-align: center;
+  overflow-wrap: break-word;
+  max-height: 100%;
 }
 
 .event-card .tone {
@@ -318,6 +340,27 @@
   width: var(--card-small-dim);
   height: var(--card-big-dim);
   position: relative;
+  padding: 1.2rem 1rem;
+}
+
+.scene-card .text-outer {
+  height: 26%;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  max-height: 100%;
+  overflow-wrap: break-word;
 }
 
 .scene-card p {
@@ -338,6 +381,16 @@
   position: absolute;
   bottom: .3rem;
   right: .3rem;
+}
+
+.scene-card textarea {
+  overflow-y: scroll;
+  scrollbar-width: none;
+  padding: 0;
+}
+
+.scene-card textarea::-webkit-scrollbar {
+  display: none;
 }
 
 .lens-indicator:hover {
@@ -390,5 +443,70 @@
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
   font-size: 1.3rem;
+}
+
+.insertPeriod {
+  width: var(--periods-gap);
+  height: var(--card-big-dim);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  opacity: 0;
+  cursor: default;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.insertEvent {
+  width: var(--card-big-dim);
+  height: 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  opacity: 0;
+  cursor: default;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.insertScene {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 1rem;
+  margin: .2rem 0;
+  width: var(--card-small-dim);
+  opacity: 0;
+  cursor: default;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 /*# sourceMappingURL=style.css.map */

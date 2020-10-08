@@ -52,6 +52,7 @@
 
 .app-container {
   padding-bottom: 4rem;
+  overflow-x: hidden;
 }
 
 .top-container {
@@ -117,7 +118,7 @@
   width: 100%;
   resize: none;
   overflow: hidden;
-  text-align: center;
+  text-align: left;
 }
 
 .lens-indicator {
@@ -166,7 +167,6 @@
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: flex-start;
-  gap: var(--periods-gap);
   padding: 0 6%;
 }
 
@@ -185,7 +185,6 @@
       -ms-flex-align: center;
           align-items: center;
   min-width: var(--card-big-dim);
-  gap: 2rem;
 }
 
 .event {
@@ -202,6 +201,5 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  gap: .8rem;
 }
 /*# sourceMappingURL=layout.css.map */
