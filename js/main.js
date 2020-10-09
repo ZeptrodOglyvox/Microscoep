@@ -1,6 +1,7 @@
 import {createPeriod, createInsertEvent, createInsertPeriod} from './components';
 import EditableTextifier from './editableText';
 import DragScroller from './dragscroller';
+import setUpMenu from './menu';
 
 
 $(window).on("load", function(){
@@ -10,4 +11,5 @@ $(window).on("load", function(){
     .append(createPeriod('End Period').append(createInsertEvent()));
     const et = new EditableTextifier();
     const ds = new DragScroller(document.querySelector('.app-container'));
+    setUpMenu();
 });

@@ -5,10 +5,7 @@
   "main": "index.html",
   "dependencies": {
     "components": "^0.1.0",
-    "dragscroll": "^0.0.8",
-    "jquery.ns-autogrow": "^1.1.6",
     "js": "^0.1.0",
-    "parcel": "^1.12.4",
     "utils": "^0.3.1"
   },
   "devDependencies": {

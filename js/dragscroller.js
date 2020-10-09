@@ -31,8 +31,10 @@ export default class DragScroller {
         const dx = this.pos.x - evt.clientX;
         const dy = this.pos.y - evt.clientY;
 
-        this.elem.scrollTop = this.pos.top + dy;
-        this.elem.scrollLeft = this.pos.left + dx;
+        const accel = 1.5;
+
+        this.elem.scrollTop = this.pos.top + accel * dy;
+        this.elem.scrollLeft = this.pos.left +accel * dx;
     }
 
     mouseUpHandler() {

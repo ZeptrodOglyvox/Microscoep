@@ -36,7 +36,7 @@ export default class EditableTextifier {
             if (this.activeInput.value.length > 0 || this.editedText.hasAttribute('data-optional')) {
                 this.editedText.textContent = this.activeInput.value;
             } else {
-                notify('This label can\'t be blank.'); // TODO exception here
+                notify('This label can\'t be blank.'); 
             }
         }
         this.activeInput.remove();

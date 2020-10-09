@@ -11,8 +11,10 @@
         resize: none;
         overflow: hidden;
         text-align: center;
+        vertical-align: center;
         padding: 2px 0;
         margin: 0;
+        scrollbar-width: none;
     }
 }
 
@@ -20,15 +22,16 @@
     display: inline-block;
     border: 1px solid #000;
     border-radius: 50%;
+    
+    &.tone-dark {
+        background-color: #000;
+    }
+    
+    &.tone-light {
+        background-color: inherit;
+    }
 }
 
-.tone-dark {
-    background-color: #000;
-}
-
-.tone-light {
-    background-color: inherit;
-}
 
 .period-card {
     width: var(--card-small-dim);

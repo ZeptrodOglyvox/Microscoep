@@ -51,6 +51,7 @@
 .insertPeriod {
     width: var(--periods-gap);
     height: var(--card-big-dim);
+    flex: 0 0 auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -82,3 +83,4 @@
     cursor: default;
     user-select: none;
 }
+
