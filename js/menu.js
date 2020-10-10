@@ -17,8 +17,9 @@ export default function setUpMenu() {
             if (!activeTab) {
                 activateTab(id);
                 gsap.to('#menu', {
-                    duration: .3,
-                    x: "0",
+                    duration: .2,
+                    ease: 'linear',
+                    x: "0%",
                 });
             }
         }
@@ -26,11 +27,10 @@ export default function setUpMenu() {
         function closeMenu() {
             if (activeTab) {
                 gsap.to('#menu', {
-                    duration: .3,
+                    duration: .2,
+                    ease: 'linear',
                     x: "100%",
-                    onComplete: () => {
-                        killActiveTab();
-                    }
+                    onComplete: () => { killActiveTab(); }
                 });
             }
         }

@@ -13,7 +13,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "serve": "parcel serve index.html"
+    "start": "parcel serve index.html"
   },
   "author": "",
   "license": "ISC"

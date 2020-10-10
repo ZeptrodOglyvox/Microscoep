@@ -83,7 +83,7 @@ function createInsertEvent() {
             const tmln = gsap.timeline();
             tmln.to(adder, {duration: .1, opacity: 0})
                 .to(adder.find('.left-line'), {duration: 0, attr: {x1: "100%"}})
-                .to(adder.find('.right-line'), {duration:0, attr: {x2: "0"}}, "<");
+                .to(adder.find('.right-line'), {duration: 0, attr: {x2: "0"}}, "<");
         }).click(function () {             
             createInsertEvent().insertAfter(this);
             createEvent().append(createInsertScene()).insertAfter(this); 

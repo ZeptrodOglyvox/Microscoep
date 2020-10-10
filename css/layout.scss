@@ -91,9 +91,6 @@
 
 .legacy-container {
     display: flex;
-    // max-width: calc(
-    //     2 * var(--card-big-dim) + 2 * var(--periods-gap) + var(--legacy-card-size)
-    // );
     max-width: 55vh;
     justify-content: space-between;
     flex: 1;
@@ -118,6 +115,11 @@
     
         .creator-name {
             font-size: .6rem;
+            padding: 0 .2rem;
+            cursor: default;
+            &:hover {
+                background-color: var(--hover-color);
+            }
         }
 
         textarea {
@@ -126,21 +128,51 @@
             overflow: hidden;
             text-align: left;
         }
+
+        .name-container { position: relative; }
+
+        .dropdown li {
+            width: 100%;
+            font-size: .6rem;
+            padding: .1rem .2rem;
+            flex: 1;
+            text-align: right;
+
+            &:hover {
+                background-color: var(--hover-color);
+            }
+        }
     }
 }
 
 .lens-indicator {
+    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
+
     border: 1px solid #000;
     font-size: .8rem;
     font-weight: var(--font-heavy);
     letter-spacing: .04rem;
-    padding: .1rem .8rem;
-    position: relative;
-    min-width: 12rem;
+    padding: .1rem 0rem .1rem .8rem;
+    min-width: 14rem;
     height: 2rem;
+
+    overflow: visible;
+    cursor: default;
+
+    .lens-name-icon {
+        height: 100%;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        padding: 0 .8rem 0 .3rem;
+
+        &:hover{
+            background-color: var(--hover-color);
+        }
+    }
 
     .icon-border {
         display: inline-flex;
@@ -151,13 +183,24 @@
         width: 1.2rem;
         height: 1.2rem;
     }
+
+    .dropdown li {
+        width: 100%;
+        padding: .25rem .6rem;
+        flex: 1;
+        text-align: right;
+
+        &:hover {
+            background-color: var(--hover-color);
+        }
+
+    }
 }
 
 .periods-container {
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
-    // gap: var(--periods-gap);
     padding: 0 calc(6% - (var(--card-big-dim) - var(--card-small-dim)) / 2);
 }
 
@@ -176,4 +219,24 @@
     justify-content: start;
     align-items: center;
     // gap: .8rem;
+}
+
+.dropdown {
+    background-color: #fff;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: start;
+
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 0;
+    
+    border: 0px solid black;
+    list-style: none;
+    
+    cursor: default;
 }
