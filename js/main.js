@@ -6,9 +6,10 @@ import DropDown from './dropdown';
 
 
 $('.periods-container')
-.append(createPeriod('Start Period').append(createInsertEvent()))
+.append(createPeriod('Start Period', false).append(createInsertEvent()))
 .append(createInsertPeriod)
-.append(createPeriod('End Period').append(createInsertEvent()));
+.append(createPeriod('End Period', false).append(createInsertEvent()));
+
 const et = new EditableTextifier();
 const ds = new DragScroller(document.querySelector('.app-container'));
 setUpMenu();
@@ -24,11 +25,9 @@ const iconNames = usernames.map((x) => {
         </span>
     `)[0]
 });
-
 const lensDDEl = document.querySelector('.lens-indicator .dropdown');
 const lensBtn = document.querySelector('.lens-indicator .lens-name-icon');
 const lensDD = new DropDown(iconNames, lensBtn, lensDDEl);
-
 
 document.querySelectorAll('.legacy-card').forEach((card) => {
     const pNames = usernames.map((x) => {

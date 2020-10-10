@@ -5,6 +5,7 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    position: relative;
 
     textarea {
         width: 100%;
@@ -15,6 +16,14 @@
         padding: 2px 0;
         margin: 0;
         scrollbar-width: none;
+    }
+
+    .delete {
+        position: absolute;
+        top: .5rem;
+        right: .5rem;
+        font-size: .5rem;
+        opacity: 0;
     }
 }
 
@@ -93,7 +102,7 @@
     width: var(--card-small-dim);
     height: var(--card-big-dim);
     position: relative;
-    padding: 1.2rem 1rem;
+    padding: 1.5rem 1rem;
 
     .text-outer {
         height: 26%;
@@ -137,3 +146,40 @@
         display: none;
     }
 }
+
+.insertPeriod {
+    width: var(--periods-gap);
+    height: var(--card-big-dim);
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    cursor: default;
+    user-select: none;
+}
+
+.insertEvent {
+    width: var(--card-big-dim);
+    height: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    opacity: 0;
+    cursor: default;
+    user-select: none;
+}
+
+.insertScene {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 1rem;
+    margin: .2rem 0;
+    width: var(--card-big-dim);
+    opacity: 0;
+    cursor: default;
+    user-select: none;
+}
+

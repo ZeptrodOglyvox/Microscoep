@@ -45,39 +45,3 @@
     }
 }
 
-.insertPeriod {
-    width: var(--periods-gap);
-    height: var(--card-big-dim);
-    flex: 0 0 auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-    cursor: default;
-    user-select: none;
-}
-
-.insertEvent {
-    width: var(--card-big-dim);
-    height: 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    opacity: 0;
-    cursor: default;
-    user-select: none;
-}
-
-.insertScene {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 1rem;
-    margin: .2rem 0;
-    width: var(--card-small-dim);
-    opacity: 0;
-    cursor: default;
-    user-select: none;
-}
-

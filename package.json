@@ -6,7 +6,8 @@
   "dependencies": {
     "components": "^0.1.0",
     "js": "^0.1.0",
-    "utils": "^0.3.1"
+    "utils": "^0.3.1",
+    "uuid": "^8.3.1"
   },
   "devDependencies": {
     "sass": "^1.27.0"

@@ -1,7 +1,7 @@
 import {toggleTone} from './utils';
+// import { v4 as uuidv4 } from 'uuid';
 
-
-function createPeriod(name) {
+function createPeriod(name, createDeleter=true) {
     const ret = $(
         `<div class="period">
             <div class="card period-card">
@@ -10,10 +10,13 @@ function createPeriod(name) {
                 </div>
                 <div class="tone tone-light"></div>
             </div>
-        </div>`)
+        </div>`);
 
         ret.find('.tone').on('click', function() {toggleTone(this);});
-        return ret
+
+        if (createDeleter) createDeleterIn(ret);
+
+        return ret;
 }
 
 function createInsertPeriod() {
@@ -57,6 +60,8 @@ function createEvent() {
         </div>`);
 
     ret.find('.tone').on('click', function() {toggleTone(this);});
+    createDeleterIn(ret);
+
     return ret
 }
 
@@ -108,6 +113,8 @@ function createScene() {
         </div>`);
 
     ret.find('.tone').on('click', function() {toggleTone(this);});
+    createDeleterIn(ret);
+
     return ret
 }
 
@@ -123,6 +130,31 @@ function createInsertScene() {
     }).click(function() { 
         createInsertScene().insertAfter(this);
         createScene().insertAfter(this);
+    });
+}
+
+function createDeleterIn(element) {
+    const deleter = $(
+        `<svg height="10px" width="10px" class="delete" stroke="black" stroke-width="1.1px";>
+            <line x1="0" y1="0" x2="100%" y2="100%"/>
+            <line x1="100%" y1="0" x2="0" y2="100%"/>
+        </svg>`
+    );
+
+    deleter.on('click', function() { 
+        element.next().remove();
+        element.remove(); 
+    } );
+
+    const card = element.hasClass('card') ? element : element.find('.card');
+    card.prepend(deleter);
+    
+    card.on('mouseover', function() { 
+        gsap.to(deleter, { duration: .1, opacity: 1 });
+    });
+
+    card.on('mouseleave', function() { 
+        gsap.to(deleter, { duration: .1, opacity: 0 });
     });
 }
 
