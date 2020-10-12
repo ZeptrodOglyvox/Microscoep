@@ -2,10 +2,12 @@
   "name": "microscoep",
   "version": "1.0.0",
   "description": "A microscope web app",
-  "main": "index.html",
+  "main": "server\\app.js",
   "dependencies": {
-    "components": "^0.1.0",
+    "express": "^4.17.1",
     "js": "^0.1.0",
+    "node-sass": "^4.14.1",
+    "socket.io": "^2.3.0",
     "utils": "^0.3.1",
     "uuid": "^8.3.1"
   },
@@ -14,7 +16,14 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "parcel serve index.html"
+    "dev": "nodemon"
+  },
+  "nodemonConfig": {
+    "watch": [
+      "server",
+      "client"
+    ],
+    "ext": "js,scss,html"
   },
   "author": "",
   "license": "ISC"
