@@ -2,21 +2,24 @@ class Cards {
 
     constructor () {}
 
-    createPeriod(name, createDeleter=true) {
+    createPeriod(period = {}) {
+        const name = period.name || "Untitled Period";
+        const tone = period.tone == 1 ? "light" : "dark";
+        const bookend = period.bookend || 0;
+
         const ret = $(
             `<div class="period">
                 <div class="card period-card">
                     <div class="name-outer">
-                        <p class="name" data-editable data-maxchars="30">${name || "Unititled Period"}</p>
+                        <p class="name" data-editable data-maxchars="30">${name}</p>
                     </div>
-                    <div class="tone tone-light"></div>
+                    <div class="tone tone-${tone}"></div>
                 </div>
             </div>`);
     
             ret.find('.tone').on('click', function() {toggleTone(this);});
     
-            if (createDeleter) this.createDeleterIn(ret);
-    
+            if (bookend == 0) this.createDeleterIn(ret);    
             return ret;
     }
 
@@ -49,14 +52,17 @@ class Cards {
             });
     }
 
-    createEvent() {
+    createEvent(event = {}) {
+        const name = event.name || "Untitled Event";
+        const tone = event.tone == 1 ? "light" : "dark";
+
         const ret = $(
             `<div class="event">
                 <div class="card event-card">
-                    <div class="description-outer">
-                    <p class="description" data-editable data-maxchars="50">Untitled Event</p>
+                    <div class="name-outer">
+                    <p class="name" data-editable data-maxchars="50">${name}</p>
                     </div>
-                    <div class="tone tone-light"></div>
+                    <div class="tone tone-${tone}"></div>
                 </div>
             </div>`);
 
@@ -96,19 +102,24 @@ class Cards {
             });
     }
 
-    createScene() {
+    createScene(scene = {}) {
+        const question = scene.question || "Question";
+        const stage = scene.stage || "Stage";
+        const answer = scene.answer || "Answer"; 
+        const tone = scene.tone == 1 ? "light" : "dark";
+
         const ret = $(
-            ` <div class="card scene-card">
+            `<div class="card scene-card">
             <div class="text-outer">
-                <p data-editable data-maxchars="60">Question</p>
+                <p data-editable data-maxchars="60">${question}</p>
             </div>
             <hr>
             <div class="text-outer">
-                <p data-editable data-maxchars="60">Setup</p>
+                <p data-editable data-maxchars="60">${stage}</p>
             </div>
             <hr>
             <div class="text-outer">
-                <p data-editable data-optional data-maxchars="60">Answer</p>
+                <p data-editable data-optional data-maxchars="60">${answer}</p>
             </div>
             <div class="tone tone-dark"></div>
             </div>`);
@@ -156,6 +167,33 @@ class Cards {
 
         card.on('mouseleave', function() { 
             gsap.to(deleter, { duration: .1, opacity: 0 });
+        });
+    }
+
+    renderSaveFile(save) {
+        // $('.legacy-container').innerHTML = '';
+        const periodsContainer = $('.periods-container').first();
+        periodsContainer.innerHTML = '';
+
+        save.periods.forEach((p, i, arr) => {
+            const periodEl = this.createPeriod(p);
+            periodEl.append(this.createInsertEvent());
+
+            p.events.forEach((e) => {
+                const eventEl = this.createEvent(e);
+                eventEl.append(this.createInsertScene());
+
+                e.scenes.forEach((s) => {
+                    eventEl.append(this.createScene(s));
+                    eventEl.append(this.createInsertScene());
+                });
+
+                periodEl.append(eventEl);
+                periodEl.append(this.createInsertEvent());
+            });
+            
+            periodsContainer.append(periodEl);
+            if (i != arr.length - 1) { periodsContainer.append(this.createInsertPeriod()); }
         });
     }
 }

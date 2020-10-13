@@ -1,0 +1,86 @@
+@import url("https://fonts.googleapis.com/css2?family=Catamaran:wght@200;300;400&display=swap");
+:root {
+  --font-light: 300;
+  --font-heavy: 400;
+  --card-big-dim: 14em;
+  --card-small-dim: 8.3em;
+  --legacy-card-size: 6em;
+  --periods-gap: 2.5em;
+  --hover-color: #e7e7e7;
+  font-size: 16px; }
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Catamaran', Arial, sans-serif;
+  font-weight: var(--font-light); }
+
+.navbar {
+  position: relative;
+  background-color: #000;
+  display: flex;
+  justify-content: space-between;
+  padding: .5rem 6%;
+  align-items: center;
+  color: #fff;
+  min-height: 4vh;
+  z-index: 950; }
+  .navbar h1 {
+    letter-spacing: .15rem;
+    user-select: none;
+    cursor: default; }
+
+.top-container {
+  background-color: lightskyblue;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 10rem; }
+  .top-container h2 {
+    font-size: 2.5rem; }
+
+.info-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 30rem;
+  font-size: 1.5rem;
+  background-color: lightblue; }
+
+.bottom-container {
+  background-color: lightcoral;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+  .bottom-container div {
+    background-color: lightseagreen;
+    display: flex;
+    flex-direction: column;
+    align-items: center; }
+
+#notification {
+  position: fixed;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-weight: var(--font-heavy);
+  font-size: 1.1rem;
+  letter-spacing: .02rem;
+  border: 1px solid black;
+  width: 70%;
+  max-width: 50rem;
+  text-align: center;
+  background-color: #fff;
+  z-index: 5;
+  padding: .4rem 0;
+  opacity: 0;
+  display: none; }
+
+#notification i {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.3rem; }

@@ -3,6 +3,9 @@ node_modules
 .cache
 
 index_sample.html
+example-save.json
+app-backup.html 
+index-backup.html
 
 playground/
 
