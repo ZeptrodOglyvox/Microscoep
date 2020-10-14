@@ -43,12 +43,62 @@ const io = require('socket.io')(http);
 let rooms = {};
 
 io.on('connection', (socket) => {
+    let _roomId = null;
+
     socket.on('register', (username, roomId) => {
         if (rooms[roomId]) { // TODO delete this later
             socket.join(roomId);
-            rooms[roomId].onlineUsers.push({socket: socket.id, username: username});
-            socket.emit('setup', rooms[roomId]);
+            _roomId = roomId;
+            rooms[_roomId].onlineUsers.push({socket: socket.id, username: username});
+            socket.emit('setup', rooms[_roomId]);
+            socket.to(_roomId).send(`${username} has joined the room.`)
         }
+    });
+
+    socket.on('createElement', (type, info, [pi, ei, si]) => {
+        const periods = rooms[_roomId].saveFile.periods;
+        switch (type) {
+            case 'Period':
+                info.events = []; 
+                periods.splice(pi, 0, info); break;
+
+            case 'Event': 
+                info.scenes = []; 
+                periods[pi].events.splice(ei, 0, info); break;
+
+            case 'Scene': 
+                periods[pi].events[ei].scenes.splice(si, 0, info); break;
+
+            default:
+                console.err(`Unkown created element type ${type}`)
+        }
+        socket.to(_roomId).emit('render', rooms[_roomId].saveFile);
+    });
+
+    socket.on('editElement', (indexarray, field, value) => {
+        const periods = rooms[_roomId].saveFile.periods;
+        const [pi, ei, si] = indexarray;
+        switch (indexarray.length) {
+            case 1: periods[pi][field] = value; break;
+            case 2: periods[pi].events[ei][field] = value; break;
+            case 3: periods[pi].events[ei].scenes[si][field] = value; break;
+            default:
+                console.err(`Unkown edited element type.`)
+        }
+        socket.to(_roomId).emit('render', rooms[_roomId].saveFile);
+    });
+
+    socket.on('deleteElement', (indexarray) => {
+        const periods = rooms[_roomId].saveFile.periods;
+        const [pi, ei, si] = indexarray;
+        switch (indexarray.length) {
+            case 1: periods.splice(pi, 1); break;
+            case 2: periods[pi].events.splice(ei, 1); break;
+            case 3: periods[pi].events[ei].scenes.splice(si, 1); break;
+            default:
+                console.err(`Unkown deleted element type.`)
+        }
+        socket.to(_roomId).emit('render', rooms[_roomId].saveFile);
     });
 });
 
@@ -63,7 +113,6 @@ app.post('/room', function(req, res) {
     if (form.new) {
         do roomId = utils.makeid(6); while (roomId in rooms);
         rooms[roomId] = { onlineUsers: [], saveFile: require('./starter-pack') };
-        console.log(JSON.stringify(rooms));
     } else if (form.load) {
         roomId = utils.makeid(6);
         // rooms[roomId] = form.saveFile;
@@ -78,9 +127,9 @@ app.post('/room', function(req, res) {
 });
 
 app.get('/room/:roomId', function(req, res) {
-    const user = req.cookies.user;
+    const username = req.cookies.username;
     const roomId = req.params.roomId;
-    if (!user) {
+    if (!username) {
         req.flash('notification', 'Whoa there stranger! Please choose a username before joining the room.');
         res.redirect('/');
     } else if(!rooms[roomId]) {

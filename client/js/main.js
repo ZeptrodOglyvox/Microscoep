@@ -1,10 +1,5 @@
 const cards = new Cards();
 
-// $('.periods-container')
-// .append(cards.createPeriod('Start Period', false).append(cards.createInsertEvent()))
-// .append(cards.createInsertPeriod())
-// .append(cards.createPeriod('End Period', false).append(cards.createInsertEvent()));
-
 const et = new EditableTextifier();
 const ds = new DragScroller(document.querySelector('.app-container'));
 setUpMenu();
@@ -31,10 +26,6 @@ document.querySelectorAll('.legacy-card').forEach((card) => {
     new DropDown(pNames, card.querySelector('.creator-name'), card.querySelector('.dropdown'));
 });
 
-
-
-
-
 const socket = io();
 
 function readCookie(name) {
@@ -47,15 +38,32 @@ function readCookie(name) {
 	}
 	return null;
 }
+const username = readCookie('username');
+const roomId = readCookie('roomId');
 
 socket.on('connect', () => {
-    const username = readCookie('username');
-    const roomId = readCookie('roomId');
     socket.emit('register', username, roomId);
 });
 
 socket.on('setup', (data) =>{
     cards.renderSaveFile(data.saveFile);
+    document.addEventListener('createElement', (evt) => {
+        socket.emit('createElement', evt.detail.type, evt.detail.info, evt.detail.index); 
+    });
+
+    document.addEventListener('editElement', (evt) => {
+        socket.emit('editElement', evt.detail.indexarray, evt.detail.field, evt.detail.value); 
+    });
+
+    document.addEventListener('deleteElement', (evt) => {
+        socket.emit('deleteElement', evt.detail.index); 
+    });
+});
+
+socket.on('message', notify);
+
+socket.on('render', (saveFile) => {
+    cards.renderSaveFile(saveFile);
 });
 
 const flash = window.sessionFlash;

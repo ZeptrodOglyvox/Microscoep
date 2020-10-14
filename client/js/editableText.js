@@ -32,6 +32,18 @@ class EditableTextifier {
         } else {
             if (this.activeInput.value.length > 0 || this.editedText.hasAttribute('data-optional')) {
                 this.editedText.textContent = this.activeInput.value;
+
+                const owner = 
+                    $(this.editedText).parent().parent().hasClass('scene-card')  
+                    ? $(this.editedText).parent().parent()
+                    : $(this.editedText).parent().parent().parent();
+
+                document.dispatchEvent(new CustomEvent('editElement', {detail:{
+                    indexarray: getIndexArray(owner), 
+                    field: this.editedText.classList[0], 
+                    value: this.editedText.textContent
+                }}));
+
             } else {
                 notify('This label can\'t be blank.'); 
             }

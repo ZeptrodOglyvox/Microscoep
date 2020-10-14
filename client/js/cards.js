@@ -2,30 +2,26 @@ class Cards {
 
     constructor () {}
 
-    createPeriod(period = {}) {
-        const name = period.name || "Untitled Period";
-        const tone = period.tone == 1 ? "light" : "dark";
-        const bookend = period.bookend || 0;
-
+    createPeriod(info) {
         const ret = $(
-            `<div class="period">
+            `<div class="period" id="${info.id}">
                 <div class="card period-card">
                     <div class="name-outer">
-                        <p class="name" data-editable data-maxchars="30">${name}</p>
+                        <p class="name" data-editable data-maxchars="30">${info.name}</p>
                     </div>
-                    <div class="tone tone-${tone}"></div>
+                    <div class="tone tone-${info.tone}"></div>
                 </div>
             </div>`);
     
             ret.find('.tone').on('click', function() {toggleTone(this);});
     
-            if (bookend == 0) this.createDeleterIn(ret);    
+            if (info.bookend == 0) this.createDeleterIn(ret);    
             return ret;
     }
 
     createInsertPeriod() {
         return $(
-            `<div class="insertPeriod">
+            `<div class="insertPeriod"">
                 <svg height="100%" width="100%">
                     <line class="top-line" x1="50%" y1="100%" x2="50%" y2="100%" style="stroke:#000;stroke-width:1" />
                 </svg>
@@ -46,23 +42,26 @@ class Cards {
                 tmln.to(adder, {duration: .1, opacity: 0})
                     .to(adder.find('.top-line'), {duration: 0, attr: {y1: "100%"}})
                     .to(adder.find('.bottom-line'), {duration:0, attr: {y2: "0"}}, "<");
-            }).on('click', (evt) => { //TODO clean this up, you could just pass createPeriodAfter
+            }).on('click', (evt) => { // TODO clean this up, you could just pass createPeriodAfter
+                const info = {name: "Untitled Period", tone: "light", bookend: 0, events: [], id: uuidv4()}
+
                 this.createInsertPeriod().insertAfter(evt.currentTarget);
-                this.createPeriod().append(this.createInsertEvent()).insertAfter(evt.currentTarget);
+                const newPeriod = this.createPeriod(info).append(this.createInsertEvent()).insertAfter(evt.currentTarget);
+
+                document.dispatchEvent(new CustomEvent('createElement', {detail: 
+                    { type: 'Period', info: info, index: getIndexArray(newPeriod)} 
+                }));
             });
     }
 
-    createEvent(event = {}) {
-        const name = event.name || "Untitled Event";
-        const tone = event.tone == 1 ? "light" : "dark";
-
+    createEvent(event) {
         const ret = $(
-            `<div class="event">
+            `<div class="event" id=${event.id}>
                 <div class="card event-card">
                     <div class="name-outer">
-                    <p class="name" data-editable data-maxchars="50">${name}</p>
+                    <p class="name" data-editable data-maxchars="50">${event.name}</p>
                     </div>
-                    <div class="tone tone-${tone}"></div>
+                    <div class="tone tone-${event.tone}"></div>
                 </div>
             </div>`);
 
@@ -96,32 +95,32 @@ class Cards {
                 tmln.to(adder, {duration: .1, opacity: 0})
                     .to(adder.find('.left-line'), {duration: 0, attr: {x1: "100%"}})
                     .to(adder.find('.right-line'), {duration: 0, attr: {x2: "0"}}, "<");
-            }).click((evt) => {             
+            }).click((evt) => {   
+                const info = { name: "Untitled Event", tone: "light", id: uuidv4() }          
                 this.createInsertEvent().insertAfter(evt.currentTarget);
-                this.createEvent().append(this.createInsertScene()).insertAfter(evt.currentTarget); 
+                const newEvent = this.createEvent(info).append(this.createInsertScene()).insertAfter(evt.currentTarget); 
+
+                document.dispatchEvent(new CustomEvent('createElement', {detail: 
+                    { type: 'Event', info: info, index: getIndexArray(newEvent) }
+                }));
             });
     }
 
-    createScene(scene = {}) {
-        const question = scene.question || "Question";
-        const stage = scene.stage || "Stage";
-        const answer = scene.answer || "Answer"; 
-        const tone = scene.tone == 1 ? "light" : "dark";
-
+    createScene(info) {
         const ret = $(
-            `<div class="card scene-card">
+            `<div class="card scene-card" id=${info.id}>
             <div class="text-outer">
-                <p data-editable data-maxchars="60">${question}</p>
+                <p class="question" data-editable data-maxchars="60">${info.question}</p>
             </div>
             <hr>
             <div class="text-outer">
-                <p data-editable data-maxchars="60">${stage}</p>
+                <p class="stage" data-editable data-maxchars="60">${info.stage}</p>
             </div>
             <hr>
             <div class="text-outer">
-                <p data-editable data-optional data-maxchars="60">${answer}</p>
+                <p class="answer" data-editable data-optional data-maxchars="60">${info.answer}</p>
             </div>
-            <div class="tone tone-dark"></div>
+            <div class="tone tone-${info.tone}"></div>
             </div>`);
 
         ret.find('.tone').on('click', function() {toggleTone(this);});
@@ -140,8 +139,14 @@ class Cards {
         }).mouseleave(function(){
             gsap.to(this, {duration: .1, opacity: 0});
         }).click((evt) => { 
+            const info = { question: "Question", stage: "Stage", answer: "Answer", tone: "light", id: uuidv4() };   
+
             this.createInsertScene().insertAfter(evt.currentTarget);
-            this.createScene().insertAfter(evt.currentTarget);
+            const newScene = this.createScene(info).insertAfter(evt.currentTarget);
+
+            document.dispatchEvent(new CustomEvent('createElement', {detail: 
+                { type: 'Scene', info: info, index: getIndexArray(newScene) }
+            }));
         });
     }
 
@@ -154,6 +159,9 @@ class Cards {
         );
 
         deleter.on('click', function() { 
+            document.dispatchEvent(new CustomEvent('deleteElement', {detail: 
+                { index: getIndexArray(element) }
+            }));
             element.next().remove();
             element.remove(); 
         } );
@@ -168,12 +176,14 @@ class Cards {
         card.on('mouseleave', function() { 
             gsap.to(deleter, { duration: .1, opacity: 0 });
         });
+
+        
     }
 
     renderSaveFile(save) {
         // $('.legacy-container').innerHTML = '';
-        const periodsContainer = $('.periods-container').first();
-        periodsContainer.innerHTML = '';
+        const periodsContainer = $('.periods-container');
+        periodsContainer.html('');
 
         save.periods.forEach((p, i, arr) => {
             const periodEl = this.createPeriod(p);

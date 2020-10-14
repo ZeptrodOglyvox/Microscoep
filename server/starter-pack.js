@@ -6,11 +6,11 @@ module.exports = {
     },
     "periods": [
         {
-            "name": "Start Period", "tone": 1, "bookend": 1,
+            "name": "Start Period", "tone": "light", "bookend": 1, "id": "start",
             "events": []
         },
         {
-            "name": "End Period", "tone": 1, "bookend": 1,
+            "name": "End Period", "tone": "light", "bookend": 1, "id": "end",
             "events": []
         }
     ]

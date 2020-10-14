@@ -1,10 +1,33 @@
-// Tone Toggle
+function getIndexArray(elem) {
+    // Because both periods and insert widgets are direct children of the container, 
+    // the actual period indices are calculated like this
+    if (elem.hasClass('period'))
+        return [Math.floor(elem.index() / 2)];
+    else if (elem.hasClass('event'))
+        return [
+            Math.floor(elem.parent().index() / 2),
+            Math.floor((elem.index() - 1) / 2)
+        ]
+    else 
+        return [
+            Math.floor(elem.parent().parent().index() / 2),
+            Math.floor((elem.parent().index() - 1 )/ 2),
+            Math.floor((elem.index() - 1)/ 2)
+        ]
+}
+
 function toggleTone(el) {
     el.classList.toggle('tone-dark');
     el.classList.toggle('tone-light');
+
+    const owner = $(el).parent().hasClass('scene-card') ?  $(el).parent() : $(el).parent().parent();
+    document.dispatchEvent(new CustomEvent('editElement', {detail:{
+        indexarray: getIndexArray(owner), 
+        field: 'tone', 
+        value: el.classList.contains('tone-light') ? 'light' : 'dark'
+    }}));
 }
 
-// Notify
 function notify(msg) {
     const notificationEl = document.querySelector('#notification');
     notificationEl.querySelector('p').innerHTML = msg;
