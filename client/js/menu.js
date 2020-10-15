@@ -1,6 +1,8 @@
 let activeTab = null;
 function setUpMenu() {
     document.querySelectorAll('.menu-icon').forEach((el) => {
+        if (el.id == 'save') return;
+
         function activateTab(id) {
             activeTab = document.getElementById(id);
             activeTab.style.display = 'flex';

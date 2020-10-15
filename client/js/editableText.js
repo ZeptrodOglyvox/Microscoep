@@ -15,7 +15,7 @@ class EditableTextifier {
                     // so you can also click on the container element
                     const children = [...evt.target.children];
                     children.forEach((el) => {
-                        this.editedText = el.hasAttribute('data-editable') ? el : null;
+                        this.editedText = el.hasAttribute('data-editable') ? el : this.editedText;
                     });
                 }
         
@@ -33,10 +33,15 @@ class EditableTextifier {
             if (this.activeInput.value.length > 0 || this.editedText.hasAttribute('data-optional')) {
                 this.editedText.textContent = this.activeInput.value;
 
-                const owner = 
-                    $(this.editedText).parent().parent().hasClass('scene-card')  
-                    ? $(this.editedText).parent().parent()
-                    : $(this.editedText).parent().parent().parent();
+                let owner = null;
+                
+                if ($(this.editedText).parent().hasClass('legacy-card')) {
+                    owner = $(this.editedText).parent();
+                }
+                else if ($(this.editedText).parent().parent().hasClass('scene-card')) {
+                    owner = $(this.editedText).parent().parent()
+                } else 
+                    owner = $(this.editedText).parent().parent().parent();
 
                 document.dispatchEvent(new CustomEvent('editElement', {detail:{
                     indexarray: getIndexArray(owner), 

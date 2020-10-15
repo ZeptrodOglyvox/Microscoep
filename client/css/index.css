@@ -16,6 +16,9 @@
   font-family: 'Catamaran', Arial, sans-serif;
   font-weight: var(--font-light); }
 
+::selection {
+  background-color: #cccccc; }
+
 .navbar {
   position: relative;
   background-color: #000;

@@ -1,6 +1,7 @@
-module.exports = {
+module.exports = function() { 
+return {
     "legacies": [],
-    "pallete": {
+    "palette": {
         "yes": "",
         "no" : ""
     },
@@ -14,4 +15,5 @@ module.exports = {
             "events": []
         }
     ]
+}
 }

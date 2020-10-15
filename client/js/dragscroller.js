@@ -31,7 +31,7 @@ class DragScroller {
         const dx = this.pos.x - evt.clientX;
         const dy = this.pos.y - evt.clientY;
 
-        const accel = 1.5;
+        const accel = 1.3;
 
         this.elem.scrollTop = this.pos.top + accel * dy;
         this.elem.scrollLeft = this.pos.left +accel * dx;

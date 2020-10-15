@@ -8,12 +8,14 @@ function getIndexArray(elem) {
             Math.floor(elem.parent().index() / 2),
             Math.floor((elem.index() - 1) / 2)
         ]
-    else 
+    else if (elem.hasClass('scene-card'))
         return [
             Math.floor(elem.parent().parent().index() / 2),
             Math.floor((elem.parent().index() - 1 )/ 2),
             Math.floor((elem.index() - 1)/ 2)
         ]
+    else 
+        return [elem.index()]
 }
 
 function toggleTone(el) {

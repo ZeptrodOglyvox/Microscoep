@@ -29,15 +29,15 @@ function makeid(length) {
     }
 
     function isValidLegacy(legacy) {
-        return legacy.description && legacy.creator;
+        return legacy.legacy && legacy.creator;
     }
 
-    function isValidPallete(pallette) {
+    function isValidpalette(pallette) {
         return pallette.yes && pallette.no;
     }
 
     return saveFile.legacies && saveFile.pallette && saveFile.periods && 
         saveFile.legacies.every(isValidLegacy) && 
-        isValidPallete(saveFile.pallette) &&
+        isValidpalette(saveFile.pallette) &&
         saveFile.periods.every(isValidPeriod);
  }

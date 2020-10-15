@@ -179,31 +179,4 @@ class Cards {
 
         
     }
-
-    renderSaveFile(save) {
-        // $('.legacy-container').innerHTML = '';
-        const periodsContainer = $('.periods-container');
-        periodsContainer.html('');
-
-        save.periods.forEach((p, i, arr) => {
-            const periodEl = this.createPeriod(p);
-            periodEl.append(this.createInsertEvent());
-
-            p.events.forEach((e) => {
-                const eventEl = this.createEvent(e);
-                eventEl.append(this.createInsertScene());
-
-                e.scenes.forEach((s) => {
-                    eventEl.append(this.createScene(s));
-                    eventEl.append(this.createInsertScene());
-                });
-
-                periodEl.append(eventEl);
-                periodEl.append(this.createInsertEvent());
-            });
-            
-            periodsContainer.append(periodEl);
-            if (i != arr.length - 1) { periodsContainer.append(this.createInsertPeriod()); }
-        });
-    }
 }

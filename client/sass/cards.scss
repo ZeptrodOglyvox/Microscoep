@@ -99,6 +99,10 @@
     }
 }
 
+.period-card:hover,
+.event-card:hover {
+  box-shadow: 3px 3px 3px #cccccc; }
+
 .scene-card {
     width: var(--card-small-dim);
     height: var(--card-big-dim);
