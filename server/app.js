@@ -106,5 +106,5 @@ app.get('/room/:roomId/save_file', function(req, res) {
 });
 
 http.listen(port, () => {
-    console.log(`App listening at http://localhost:${port}`);
+    console.log(`App listening at http://localhost:${process.env.PORT || 5000}`);
 });
