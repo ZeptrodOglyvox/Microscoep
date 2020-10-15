@@ -16,8 +16,12 @@ module.exports = function attachEventHandlers(io, rooms) {
 
             socket.join(roomId);
             rooms[_roomId].onlinePlayers.push({socket: socket.id, username: username});
-            if (rooms[_roomId].saveFile.legacies.length < rooms[_roomId].onlinePlayers.length)
+
+            if (!rooms[_roomId].saveFile.legacies.some(lg => lg.creator == username) &&
+                rooms[_roomId].saveFile.legacies.length < rooms[_roomId].onlinePlayers.length
+            )
                 rooms[_roomId].saveFile.legacies.push({legacy: '', creator: username});
+
             socket.emit('setup', rooms[_roomId]);
             socket.to(_roomId).emit('playerConnect', {username: username});
             socket.to(_roomId).emit('render', rooms[_roomId]);
