@@ -218,7 +218,7 @@
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
-  padding: 0 50rem var(--card-big-dim) var(--l-padding);
+  padding: 0 10rem var(--card-big-dim) var(--l-padding);
   min-height: 100vh;
   min-width: 110vw; }
 
@@ -278,6 +278,23 @@
   top: 50%;
   transform: translateY(-50%);
   font-size: 1.3rem; }
+
+#room-code-dismissable {
+  position: absolute;
+  background-color: #fff;
+  bottom: 1rem;
+  right: 1rem;
+  border: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 10rem;
+  height: 6rem;
+  z-index: 100;
+  box-shadow: 3px 3px 3px #cccccc; }
+  #room-code-dismissable strong {
+    font-weight: --font-heavy; }
 
 .card {
   border: 1px solid #000;

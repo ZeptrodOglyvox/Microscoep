@@ -11,25 +11,23 @@ const session = require('express-session');
 const fileUpload = require('express-fileupload');
 const flash = require('connect-flash');
 const port = 3000;
-
 const bp = require('body-parser');
-const { emit } = require('process');
 
-function errorHandler(err) {
-    if (err) console.error(err);
-}
+// function errorHandler(err) {
+//     if (err) console.error(err);
+// }
 
-function renderSass(fileName) {
-    sass.render({file: path.join(__dirname, '..', 'client', 'sass', `${fileName}.scss`)}, (err, result) => {
-        if (!err) {
-            fs.writeFile(path.join(__dirname, '..', 'client', 'css',  `${fileName}.css`), result.css, errorHandler);
-        } else {
-            errorHandler(err);
-        }
-    });
-}
+// function renderSass(fileName) {
+//     sass.render({file: path.join(__dirname, '..', 'client', 'sass', `${fileName}.scss`)}, (err, result) => {
+//         if (!err) {
+//             fs.writeFile(path.join(__dirname, '..', 'client', 'css',  `${fileName}.css`), result.css, errorHandler);
+//         } else {
+//             errorHandler(err);
+//         }
+//     });
+// }
 
-['style', 'index'].forEach(renderSass);
+// ['style', 'index'].forEach(renderSass);
 
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, '..', 'client', 'templates'))
@@ -71,7 +69,12 @@ app.post('/room', function(req, res) {
         rooms[roomId] = JSON.parse(saveFile.data);
     } else if (form.join){
         roomId = form.roomId.toUpperCase();
-        if (rooms[roomId].onlinePlayers.some(p => p.username == form.username)) {
+        if(!rooms[roomId]) {
+            req.flash('notification','Whopsie! The room you are trying to join doesn\'t exist.');
+            res.redirect('/');
+            return;
+        }
+        else if (rooms[roomId].onlinePlayers.some(p => p.username == form.username)) {
             req.flash('notification', 'This username is already taken in this room.');
             res.redirect('/');
             return;
@@ -98,10 +101,10 @@ app.get('/room/:roomId', function(req, res) {
     }
 });
 
-http.listen(port, () => {
-    console.log(`App listening at http://localhost:${port}`);
-});
-
 app.get('/room/:roomId/save_file', function(req, res) {
     res.json(rooms[req.params.roomId]);
+});
+
+http.listen(port, () => {
+    console.log(`App listening at http://localhost:${port}`);
 });

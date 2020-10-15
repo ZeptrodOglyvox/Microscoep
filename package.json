@@ -2,6 +2,9 @@
   "name": "microscoep",
   "version": "1.0.0",
   "description": "A microscope web app",
+  "engines": {
+    "node": "12.x"
+  },
   "main": "server\\app.js",
   "dependencies": {
     "body-parser": "^1.19.0",
@@ -24,7 +27,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon",
-    "debug": "nodemon --inspect"
+    "debug": "nodemon --inspect",
+    "start": "node server\\app.js"
   },
   "nodemonConfig": {
     "watch": [
@@ -33,6 +37,6 @@
     ],
     "ext": "js,scss,html"
   },
-  "author": "",
-  "license": "ISC"
+  "author": "ZeptrodOglyvox",
+  "license": "MIT"
 }

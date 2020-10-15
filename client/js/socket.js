@@ -11,13 +11,12 @@ function readCookie(name) {
 	return null;
 }
 
-
-
 const username = readCookie('username');
 const roomId = readCookie('roomId');
 
 socket.on('connect', () => {
     socket.emit('register', username, roomId);
+    $('#room-code strong').text(roomId);
 });
 
 socket.on('setup', (data) =>{

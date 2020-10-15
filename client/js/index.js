@@ -4,3 +4,11 @@ $('#form').on('submit', function(event) {
         notify('Username can\'t be blank.');
     } 
 });
+
+$('#fakeinput').on('click', function() {
+    $("#fileinput").click();
+});
+
+$('#fileinput').change(function() {
+    $('#filename').text($('#fileinput')[0].files[0].name);
+});

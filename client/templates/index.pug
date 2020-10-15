@@ -16,31 +16,25 @@ head
 nav.navbar
   h1.logo Microscoep
 form#form(action='/room', method='POST', encType="multipart/form-data")
-  .top-container
-    h2 Microscoep
-    .info-container
-      span
-        label(for='username') Username
-        input#username(type='text', name='username', maxlength='14')
-      span
-        p Icon
-        span.fas.fa-eye.icon
+  h2 Microscoep
+  .info-container
+      label(for='username') Username
+      input#username(type='text', name='username', maxlength='14')
   .bottom-container
     div
-      h3 Create Room
+      h3 Create New Room
       input(type='submit', name='new', value='New Game')
-      p or
-      input(type='file', name='saveFile')
-      input(type='submit', name='load', value='Load Save File')
-    svg
-      line(x1='50%', y1='0', x2='50%', y2='100%', stroke='black', stroke-width='2')
+    div 
+      h3 Load Save File
+      input#fileinput(type='file', name='saveFile', style='display:none;')
+      span
+        button(id="fakeinput" type="button") Browse... 
+        span(id="filename") &nbsp;&nbsp;&nbsp;No file selected
+      input(type='submit', name='load', value='Load')
     div
       h3 Join Room
-      label(for='room')
-        | Room Code
-        p
-        input#room(type='text', name='roomId')
-        input(type='submit', name='join', value='Join')
+      input#room(type='text', name='roomId', maxlength='6', placeholder='Room Code')
+      input(type='submit', name='join', value='Join')
 #notification
   p  This text can&apos;t be blank.
   i.fas.fa-microscope
