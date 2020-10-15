@@ -10,8 +10,8 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const fileUpload = require('express-fileupload');
 const flash = require('connect-flash');
-const port = 3000;
 const bp = require('body-parser');
+const port = process.env.PORT || 5000;
 
 // function errorHandler(err) {
 //     if (err) console.error(err);
@@ -106,5 +106,5 @@ app.get('/room/:roomId/save_file', function(req, res) {
 });
 
 http.listen(port, () => {
-    console.log(`App listening at http://localhost:${process.env.PORT || 5000}`);
+    console.log(`App listening at http://localhost:${port}`);
 });
