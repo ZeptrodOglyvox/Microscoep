@@ -108,3 +108,18 @@ $('#save').on('click', async function() {
         notify('Downloading the save file failed.');
     }
 });
+
+$('#room-code-dismissable').on('mousedown', function(evt) {
+    if (evt.button == 2) {
+        let roomCode = $(this).find('strong').text();
+        
+        var dummy = document.createElement("textarea");
+        document.body.appendChild(dummy);
+        dummy.value = roomCode;
+        dummy.select();
+        document.execCommand("copy");
+        document.body.removeChild(dummy);
+        
+        notify('Room code copied to clipboard.');
+    }
+});
