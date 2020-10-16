@@ -14,30 +14,33 @@ function makeid(length) {
  }
 
  function validateSaveFile(saveFile) {
-    function isValidScene(scene) {
-        return scene.question && scene.stage && scene.answer && scene.tone;
+    function contained(arr, obj) {
+        return arr.every(e => (e in obj));
+    } 
+
+    function isValidScene(obj) {
+        return contained(['question', 'stage', 'answer', 'tone'], obj);
     }
 
-    function isValidEvent(event) {
-        return event.name && event.tone && event.scenes && 
-            event.scenes.every(isValidScene);
+    function isValidEvent(obj) {
+        return contained(['name', 'tone', 'scenes'], obj) && obj.scenes.every(isValidScene);
     }
 
-    function isValidPeriod(period) {
-        return period.name && period.tone && period.events && period.bookend &&
-            period.events.every(isValidEvent);
+    function isValidPeriod(obj) {
+        return contained(['name', 'tone', 'events', 'bookend', 'events'], obj) && obj.events.every(isValidEvent);
+
     }
 
-    function isValidLegacy(legacy) {
-        return legacy.legacy && legacy.creator;
+    function isValidLegacy(obj) {
+        return contained(['legacy', 'creator'], obj);
     }
 
-    function isValidpalette(pallette) {
-        return pallette.yes && pallette.no;
+    function isValidpalette(obj) {
+        return contained(['yes', 'no'], obj);
     }
 
-    return saveFile.legacies && saveFile.pallette && saveFile.periods && 
+    return contained(['legacies', 'palette', 'periods'], saveFile) && 
         saveFile.legacies.every(isValidLegacy) && 
-        isValidpalette(saveFile.pallette) &&
+        isValidpalette(saveFile.palette) &&
         saveFile.periods.every(isValidPeriod);
  }

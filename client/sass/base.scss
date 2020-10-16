@@ -22,3 +22,8 @@ font-weight: var(--font-light);
 ::selection {
 background-color: #cccccc; 
 }
+
+a {
+    color: inherit;
+    text-decoration: none;
+}

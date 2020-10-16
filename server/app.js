@@ -1,4 +1,4 @@
-const utils = require('./utils');
+const {makeid, validateSaveFile} = require('./utils');
 // ######## Express Stuff #########
 const express = require('express');
 const sass = require('node-sass');
@@ -13,21 +13,21 @@ const flash = require('connect-flash');
 const bp = require('body-parser');
 const port = process.env.PORT || 5000;
 
-// function errorHandler(err) {
-//     if (err) console.error(err);
-// }
+function errorHandler(err) {
+    if (err) console.error(err);
+}
 
-// function renderSass(fileName) {
-//     sass.render({file: path.join(__dirname, '..', 'client', 'sass', `${fileName}.scss`)}, (err, result) => {
-//         if (!err) {
-//             fs.writeFile(path.join(__dirname, '..', 'client', 'css',  `${fileName}.css`), result.css, errorHandler);
-//         } else {
-//             errorHandler(err);
-//         }
-//     });
-// }
+function renderSass(fileName) {
+    sass.render({file: path.join(__dirname, '..', 'client', 'sass', `${fileName}.scss`)}, (err, result) => {
+        if (!err) {
+            fs.writeFile(path.join(__dirname, '..', 'client', 'css',  `${fileName}.css`), result.css, errorHandler);
+        } else {
+            errorHandler(err);
+        }
+    });
+}
 
-// ['style', 'index'].forEach(renderSass);
+['style', 'index'].forEach(renderSass);
 
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, '..', 'client', 'templates'))
@@ -55,7 +55,7 @@ app.post('/room', function(req, res) {
     const form = req.body;
     let roomId = null;
     if (form.new) {
-        do roomId = utils.makeid(6); while (roomId in rooms);
+        do roomId = makeid(6); while (roomId in rooms);
         rooms[roomId] = { onlinePlayers: [], 'lens-name': '', saveFile: require('./starter-pack')() };
     } else if (form.load) {
         if (!req.files || Object.keys(req.files).length === 0) {
@@ -63,10 +63,15 @@ app.post('/room', function(req, res) {
             res.redirect('/');
             return;
         }
-        const saveFile = req.files.saveFile;
+        const saveFile = JSON.parse(req.files.saveFile.data);
+        if (!validateSaveFile(saveFile)) {
+            req.flash('notification', 'The save file is not valid.');
+            res.redirect('/');
+            return;
+        }
 
-        roomId = utils.makeid(6);
-        rooms[roomId] = JSON.parse(saveFile.data);
+        roomId = makeid(6);
+        rooms[roomId] = {onlinePlayers: [], saveFile: saveFile};
     } else if (form.join){
         roomId = form.roomId.toUpperCase();
         if(!rooms[roomId]) {
@@ -102,7 +107,7 @@ app.get('/room/:roomId', function(req, res) {
 });
 
 app.get('/room/:roomId/save_file', function(req, res) {
-    res.json(rooms[req.params.roomId]);
+    res.json(rooms[req.params.roomId].saveFile);
 });
 
 http.listen(port, () => {
